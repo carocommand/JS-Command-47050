@@ -1,184 +1,124 @@
-function aceptarNombre() {
-    const nombre = prompt ("Ingresa tu nombre:")
-    return nombre
-}
+const GATITO_COMIENDO_PATH = "./imagenes/gatito-comiendo.jpg"
+const GATITO_JUGANDO_PATH = "./imagenes/gatito-jugando.jpg"
+const GATITO_ALIEN_PATH = "./imagenes/gatito-alien.jpg"
+let puntos = 0
+let tareasCompletadas = []
+let tareasSinCompletar = []
 
-function aceptarEdad() {
-    let edad = 0
-    while (isNaN(edad) || edad < 1 || edad > 100) {
-        edad = prompt ("Ingresa tu edad:")
-        edad = +edad
+ // El nivel todavía no está aplicado
+ class Mascota {
+    constructor(nombre, energia, nivel){
+        this.nombre = nombre;
+        this.energia = energia;
+        this.nivel = nivel;
     }
-    return edad
-}
 
-function aceptarColor() {
-    let color
-    while (color != "azul" && color != "rosa" && color != "naranja" && color != "verde") {
-        color = prompt ("Que color preferís: azul, rosa, naranja o verde?")
-    }
-    return color
-}
-
-function aceptarNumero() {
-    let numero = NaN
-    console.log(numero)
-    while (isNaN(numero)) {
-        numero = prompt ("Ingresa tu número favorito:")
-        numero = +numero
-    }
-    return numero
-}
-
-function aceptarComida() {
-    let comida 
-    while (comida != "lasagna" && comida != "sardinas" && comida != "pollo" && comida != "aceitunas") {
-        comida = prompt ("Que comida te gusta más: lasagna, sardinas, pollo o aceitunas?")
-    }
-    return comida
-}
-
-function aceptarEstacion() {
-    let estacion 
-    while (estacion != "verano" && estacion != "otoño" && estacion != "invierno" && estacion != "primavera") {
-        estacion = prompt ("Cuál estación del año es la mejor?")
-    }
-    return estacion
-}
-
-function esPar(numero) {
-    return numero %2 == 0
-}
-
-function aniosGatunos(edad) {
-
-    let aniogato = 0
-
-    if (edad <= 24) {
-        aniogato = edad / 12
-    }
-    else {
-        aniogato = 2 + ((edad - 24) / 4)
-    }
-    return aniogato
-}
-
-function iniciarQuiz() {
-    const nombre = aceptarNombre()
-    alert ("Hola " + nombre + "!")
-    const edad = aceptarEdad()
-    const color = aceptarColor()
-    const numero = aceptarNumero()
-    const comida = aceptarComida()
-    const estacion = aceptarEstacion()
-
-    let gato = ""
-
-    if (esPar(numero)) {
-        switch (color) {
-            case "azul":
-            case "rosa":
-                switch (comida) {
-                    case "lasagna":
-                    case "pollo":
-                        switch (estacion) {
-                            case "verano":
-                            case "primavera":
-                                gato = "naranja"
-                                break
-                            default:
-                                gato = "negro"
-                        }
-                        break;
-                    default:
-                        switch (estacion) {
-                            case "verano":
-                            case "primavera":
-                                gato = "tabby"
-                                break
-                            default:
-                                gato = "negro"
-                        }
-                }
-                break;
-            default:
-                switch (comida) {
-                    case "lasagna":
-                    case "pollo":
-                        switch (estacion) {
-                            case "verano":
-                            case "primavera":
-                                gato = "tabby"
-                                break
-                            default:
-                                gato = "negro"
-                        }
-                        break;
-                    default:
-                        switch (estacion) {
-                            case "verano":
-                            case "primavera":
-                                gato = "tricolor"
-                                break
-                            default:
-                                gato = "tabby"
-                        }
-                }
+    alimentar(puntos) {
+        if (puntos >= 2) {
+            this.energia = this.energia + 1
+            if (this.energia >= 2 && this.energia < 4) {
+            cambiarImagen(GATITO_COMIENDO_PATH)
+            }
+            if (this.energia >= 4 && this.energia < 6) {
+            cambiarImagen(GATITO_JUGANDO_PATH)
+            }
+            if (this.energia === 6) {
+            cambiarImagen(GATITO_ALIEN_PATH)
+            }
+            return puntos - 2
+        } 
+        if (puntos < 2){
+            alert ("Los puntos no son sucifientes!")
+            return puntos
         }
     }
-    else {
-        switch (color) {
-            case "azul":
-            case "rosa":
-                switch (comida) {
-                    case "lasagna":
-                    case "pollo":
-                        switch (estacion) {
-                            case "verano":
-                            case "primavera":
-                                gato = "tricolor"
-                                break
-                            default:
-                                gato = "negro"
-                        }
-                        break;
-                    default:
-                        switch (estacion) {
-                            case "verano":
-                            case "primavera":
-                                gato = "tuxedo"
-                                break
-                            default:
-                                gato = "tricolor"
-                        }
-                }
-                break;
-            default:
-                switch (comida) {
-                    case "lasagna":
-                    case "pollo":
-                        switch (estacion) {
-                            case "verano":
-                            case "primavera":
-                                gato = "tuxedo"
-                                break
-                            default:
-                                gato = "tricolor"
-                        }
-                        break;
-                    default:
-                        switch (estacion) {
-                            case "verano":
-                            case "primavera":
-                                gato = "tuxedo"
-                                break
-                            default:
-                                gato = "blanco"
-                        }
-                }
-        }
+ }
+
+ let gatito = new Mascota ("Gatito", 0, 1)
+ 
+ class Tarea {
+    constructor(nombre, puntos){
+        this.nombre = nombre;
+        this.puntos = puntos;
     }
-    alert (nombre + ": sos un gato " + gato + " y tenés " + aniosGatunos(edad) + " años gatunos!")
+ }
+
+ function dibujarPuntos(puntos) {
+    let puntaje = document.getElementById("puntos")
+    puntaje.innerHTML = "Puntos: " + puntos
+ }
+
+ function dibujarEnergia(energia) {
+    let laEnergia = document.getElementById("energia")
+    laEnergia.innerHTML = "Energía: " + energia
+ }
+
+function dibujarLista(idLista, listaDeTareas, fn) {
+    let lista = document.getElementById(idLista)
+    lista.innerHTML = ""
+    for (let i=0; i<listaDeTareas.length; i++) {
+        let item = document.createElement("li")
+        item.addEventListener("click", fn, false)
+        item.innerHTML = listaDeTareas[i].nombre
+        lista.appendChild(item)
+    }
 }
 
-iniciarQuiz()
+function completar(event) {
+    let nombreTarea = event.target.innerHTML
+    let indiceTarea = tareasSinCompletar.findIndex(t => t.nombre === nombreTarea)
+    let tarea = tareasSinCompletar[indiceTarea]
+    puntos = puntos + tarea.puntos
+    dibujarEnergia(gatito.energia)
+    dibujarPuntos(puntos)
+    tareasSinCompletar.splice(indiceTarea, 1)
+    tareasCompletadas.push(tarea)
+    dibujarLista("tareas", tareasSinCompletar, completar)
+    dibujarLista("tareas-comp", tareasCompletadas, eliminar)
+}
+
+function eliminar(event) {
+    let nombreTarea = event.target.innerHTML
+    let indiceTarea = tareasCompletadas.findIndex(t => t.nombre === nombreTarea)
+    let tarea = tareasCompletadas[indiceTarea]
+    puntos = puntos - tarea.puntos
+    dibujarEnergia(gatito.energia)
+    dibujarPuntos(puntos)
+    tareasCompletadas.splice(indiceTarea, 1)
+    tareasSinCompletar.push(tarea)
+    dibujarLista("tareas-comp", tareasCompletadas, eliminar)
+    dibujarLista("tareas", tareasSinCompletar, completar)
+}
+
+function alimentar() {
+    puntos = gatito.alimentar(puntos)
+    dibujarEnergia(gatito.energia)
+    dibujarPuntos(puntos)
+}
+
+function cambiarImagen(path) {
+    let imagen = document.getElementById("foto-gatito")
+    imagen.setAttribute("src", path)
+}
+
+ function main() {
+    const tarea1 = new Tarea("Lavar los platos", 1)
+    const tarea2 = new Tarea("Lavar la ropa", 1)
+    const tarea3 = new Tarea("Doblar y guardar la ropa", 1)
+    const tarea4 = new Tarea("Tender la cama", 1)
+    const tarea5 = new Tarea("Barrer y pasar el trapo", 1)
+    const tarea6 = new Tarea("Ventilar ambientes", 1)
+    const tarea7 = new Tarea("Tomar al menos 1.5L de agua", 1)
+    const tarea8 = new Tarea("Estudiar por al menos 2 horas", 1)
+    const tarea9 = new Tarea("Hacer mínimo 45' de ejercicio", 1)
+    const tarea10 = new Tarea("Salir a tomar aire", 1)
+    const tarea11 = new Tarea("Leer un libro", 1)
+    const tarea12 = new Tarea("Meditar", 1)
+    tareasSinCompletar.push(tarea1, tarea2, tarea3, tarea4, tarea5, tarea6, tarea7, tarea8, tarea9, tarea10, tarea11, tarea12)
+    dibujarEnergia(gatito.energia)
+    dibujarPuntos(puntos)
+    dibujarLista("tareas", tareasSinCompletar, completar)
+    dibujarLista("tareas-comp", tareasCompletadas, eliminar)
+}
+
+ main()

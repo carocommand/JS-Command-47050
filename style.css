@@ -1,0 +1,26 @@
+body {
+  background-color: rgb(255, 129, 228);
+}
+body header {
+  text-align: center;
+  color: rgb(168, 0, 56);
+}
+body main button {
+  background-color: rgb(168, 0, 56);
+  border-width: 0;
+  margin: 10px;
+  color: white;
+}
+body main h3, body main h2 {
+  color: rgb(168, 0, 56);
+}
+body main ul {
+  color: rgb(78, 0, 26);
+}
+
+.foto-gatito {
+  height: 300px;
+  width: 300px;
+}
+
+/*# sourceMappingURL=style.css.map */
