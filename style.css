@@ -1,8 +1,8 @@
 body {
-  background-color: rgb(255, 129, 228);
+  text-align: center;
+  background-color: rgb(240, 209, 233);
 }
 body header {
-  text-align: center;
   color: rgb(168, 0, 56);
 }
 body main button {
@@ -10,17 +10,25 @@ body main button {
   border-width: 0;
   margin: 10px;
   color: white;
+  height: 40px;
+  width: 100px;
+  border-radius: 30px;
 }
 body main h3, body main h2 {
   color: rgb(168, 0, 56);
 }
-body main ul {
+body main div {
+  display: inline-block;
+  text-align: start;
+}
+body main div ul {
   color: rgb(78, 0, 26);
 }
 
 .foto-gatito {
   height: 300px;
   width: 300px;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

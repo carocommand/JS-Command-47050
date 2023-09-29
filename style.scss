@@ -1,0 +1,36 @@
+$rosa-oscuro: rgb(168, 0, 56);
+
+body {
+    text-align: center;
+    background-color: rgb(240, 209, 233);
+    header {
+        color: $rosa-oscuro;
+    }
+    main {
+        button {
+            background-color: $rosa-oscuro;
+            border-width: 0;
+            margin: 10px;
+            color: white;
+            height: 40px;
+            width: 100px;
+            border-radius: 30px;
+        }
+        h3, h2 {
+            color: $rosa-oscuro;
+        }
+        div {
+            display: inline-block;
+            text-align: start;
+            ul {
+            color: rgb(78, 0, 26);
+            }
+        }
+    }
+}
+
+.foto-gatito {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+}
