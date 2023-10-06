@@ -12,16 +12,28 @@
     </header>
     <main>
         <div id="div-foto"><img id="foto-gatito" class="foto-gatito" src="imagenes/gatito-dormido.jpg" alt="gatito dormido"></div> </br>
-        <button id="alimentar" onclick="alimentar()">Alimentar</button>
+        <button id="alimentar">Alimentar</button>
 
+        <div class="container">
         <h2 id="energia"></h2>
         <h2 id="puntos"></h2>
+        </div>
 
-        <h3>Tareas completadas:</h3>
-        <div><ul id="tareas-comp"></ul></div>
+        <form>
+            <label for="nuevaTarea">Ingresa una nueva tarea:</label>
+            <input type="text" id="nuevaTarea" required>
+            <button id="listo">Listo!</button>
+        </form>
 
+        <div class="container-tarea">
         <h3>Tareas:</h3>
         <div><ul id="tareas"></ul></div>
+        </div>
+
+        <div class="container-tarea">
+        <h3>Tareas completadas:</h3>
+        <div><ul id="tareas-comp"></ul></div>
+        </div>
     </main>
      
     <script src="script.js"></script>

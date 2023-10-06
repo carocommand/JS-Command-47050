@@ -43,6 +43,12 @@ let tareasSinCompletar = []
     }
  }
 
+ let boton = document.getElementById("alimentar")
+ boton.addEventListener("click", alimentar)
+
+ let boton2 = document.getElementById("listo")
+ boton2.addEventListener("click", agregarTarea)
+
  function dibujarPuntos(puntos) {
     let puntaje = document.getElementById("puntos")
     puntaje.innerHTML = "Puntos: " + puntos
@@ -73,6 +79,9 @@ function completar(event) {
     dibujarPuntos(puntos)
     tareasSinCompletar.splice(indiceTarea, 1)
     tareasCompletadas.push(tarea)
+    localStorage.setItem("tareasCompletadas", JSON.stringify(tareasCompletadas))
+    localStorage.setItem("tareasSinCompletar", JSON.stringify(tareasSinCompletar))
+    localStorage.setItem("puntos", JSON.stringify(puntos))
     dibujarLista("tareas", tareasSinCompletar, completar)
     dibujarLista("tareas-comp", tareasCompletadas, eliminar)
 }
@@ -86,12 +95,17 @@ function eliminar(event) {
     dibujarPuntos(puntos)
     tareasCompletadas.splice(indiceTarea, 1)
     tareasSinCompletar.push(tarea)
+    localStorage.setItem("tareasCompletadas", JSON.stringify(tareasCompletadas))
+    localStorage.setItem("tareasSinCompletar", JSON.stringify(tareasSinCompletar))
+    localStorage.setItem("puntos", JSON.stringify(puntos))
     dibujarLista("tareas-comp", tareasCompletadas, eliminar)
     dibujarLista("tareas", tareasSinCompletar, completar)
 }
 
 function alimentar() {
     puntos = gatito.alimentar(puntos)
+    localStorage.setItem("puntos", JSON.stringify(puntos))
+    localStorage.setItem("gatito", JSON.stringify(gatito))
     dibujarEnergia(gatito.energia)
     dibujarPuntos(puntos)
 }
@@ -101,20 +115,38 @@ function cambiarImagen(path) {
     imagen.setAttribute("src", path)
 }
 
+function agregarTarea(event) {
+    event.preventDefault()
+    let inputTarea = document.getElementById("nuevaTarea")
+    let valorTarea = inputTarea.value
+    inputTarea.value = ""
+    let tareaNueva = new Tarea (valorTarea, 1)
+    tareasSinCompletar.push(tareaNueva)
+    localStorage.setItem("tareasSinCompletar", JSON.stringify(tareasSinCompletar))
+    dibujarLista("tareas", tareasSinCompletar, completar)
+ }
+
+ function inicializar() {
+    let tareas1 = JSON.parse(localStorage.getItem("tareasSinCompletar"))
+    let tareas2 = JSON.parse(localStorage.getItem("tareasCompletadas"))
+    let puntaje = JSON.parse(localStorage.getItem("puntos"))
+    let mascota = JSON.parse(localStorage.getItem("gatito"))
+    if (tareas1 != null) {
+        tareasSinCompletar = tareas1
+    }
+    if (tareas2 != null) {
+        tareasCompletadas = tareas2
+    }
+    if (puntaje != null) {
+        puntos = puntaje
+    }
+    if (mascota != null) {
+        gatito = mascota
+    }
+ }
+
  function main() {
-    const tarea1 = new Tarea("Lavar los platos", 1)
-    const tarea2 = new Tarea("Lavar la ropa", 1)
-    const tarea3 = new Tarea("Doblar y guardar la ropa", 1)
-    const tarea4 = new Tarea("Tender la cama", 1)
-    const tarea5 = new Tarea("Barrer y pasar el trapo", 1)
-    const tarea6 = new Tarea("Ventilar ambientes", 1)
-    const tarea7 = new Tarea("Tomar al menos 1.5L de agua", 1)
-    const tarea8 = new Tarea("Estudiar por al menos 2 horas", 1)
-    const tarea9 = new Tarea("Hacer mínimo 45' de ejercicio", 1)
-    const tarea10 = new Tarea("Salir a tomar aire", 1)
-    const tarea11 = new Tarea("Leer un libro", 1)
-    const tarea12 = new Tarea("Meditar", 1)
-    tareasSinCompletar.push(tarea1, tarea2, tarea3, tarea4, tarea5, tarea6, tarea7, tarea8, tarea9, tarea10, tarea11, tarea12)
+    inicializar()
     dibujarEnergia(gatito.energia)
     dibujarPuntos(puntos)
     dibujarLista("tareas", tareasSinCompletar, completar)
