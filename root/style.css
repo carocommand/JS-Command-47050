@@ -1,0 +1,72 @@
+body {
+  text-align: center;
+  background-color: rgb(133, 148, 227);
+}
+body header {
+  font-size: larger;
+  color: rgb(208, 7, 91);
+}
+body main #alimentar {
+  display: inline-block;
+  background-color: rgb(208, 7, 91);
+  border-width: 0;
+  margin: 10px;
+  color: rgb(171, 238, 254);
+  height: 40px;
+  width: 100px;
+  border-radius: 30px;
+}
+body main .container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+body main .container #energia {
+  margin-right: 50px;
+}
+body main .container #puntos {
+  margin-left: 50px;
+}
+body main .container-tarea {
+  display: inline-block;
+  margin-left: 50px;
+  margin-right: 50px;
+  vertical-align: top;
+}
+body main h3, body main h2 {
+  color: rgb(208, 7, 91);
+}
+body main div {
+  display: inline-block;
+  text-align: start;
+}
+body main div ul {
+  color: rgb(71, 0, 109);
+}
+body main #listo {
+  background-color: rgb(208, 7, 91);
+  border-width: 0;
+  margin: 10px;
+  color: rgb(171, 238, 254);
+  height: 30px;
+  width: 80px;
+  border-radius: 20px;
+}
+body main form label {
+  color: rgb(71, 0, 109);
+}
+body main form input {
+  background-color: rgb(171, 238, 254);
+  border-width: 0;
+  height: 25px;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.foto-gatito {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */

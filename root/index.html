@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi tasks</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../imagenes/paw-favicon.png">
+</head>
+<body>
+    <header>
+        <h1>Michi tasks</h1>
+        <p id="fact"></p>
+    </header>
+    <main>
+        <div id="div-foto"><img id="foto-gatito" class="foto-gatito" src="../imagenes/gatito-dormido.jpg" alt="gatito dormido"></div> </br>
+        <button id="alimentar">Feed</button>
+
+        <div class="container">
+        <h2 id="energia"></h2>
+        <h2 id="puntos"></h2>
+        </div>
+
+        <form>
+            <label for="nuevaTarea">Add a new task:</label>
+            <input type="text" id="nuevaTarea" required>
+            <button id="listo">Done!</button>
+        </form>
+
+        <div class="container-tarea">
+        <h3>To do:</h3>
+        <div><ul id="tareas"></ul></div>
+        </div>
+
+        <div class="container-tarea">
+        <h3>Completed tasks:</h3>
+        <div><ul id="tareas-comp"></ul></div>
+        </div>
+    </main>
+     
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
